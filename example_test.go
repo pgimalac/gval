@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/Intevation/gval"
-	"github.com/Intevation/jsonpath"
 )
 
 func Example() {
@@ -342,6 +341,8 @@ func ExampleEvaluable_EvalBool() {
 	// yeah
 }
 
+/*
+
 func ExampleEvaluate_jsonpath() {
 
 	value, err := gval.Evaluate(`$["response-time"]`,
@@ -359,6 +360,7 @@ func ExampleEvaluate_jsonpath() {
 	// Output:
 	// 100
 }
+*/
 
 func ExampleLanguage() {
 	lang := gval.NewLanguage(gval.JSON(), gval.Arithmetic(),

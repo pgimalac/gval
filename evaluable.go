@@ -170,22 +170,10 @@ func reflectSelect(key string, value interface{}) (selection interface{}, ok boo
 			return vvElem.Interface(), true
 		}
 
-		// key didn't exist. Check if there is a bound method
-		method := vv.MethodByName(key)
-		if method.IsValid() {
-			return method.Interface(), true
-		}
-
 	case reflect.Slice:
 		if i, err := strconv.Atoi(key); err == nil && i >= 0 && vv.Len() > i {
 			vvElem = resolvePotentialPointer(vv.Index(i))
 			return vvElem.Interface(), true
-		}
-
-		// key not an int. Check if there is a bound method
-		method := vv.MethodByName(key)
-		if method.IsValid() {
-			return method.Interface(), true
 		}
 
 	case reflect.Struct:
@@ -194,10 +182,6 @@ func reflectSelect(key string, value interface{}) (selection interface{}, ok boo
 			return field.Interface(), true
 		}
 
-		method := vv.MethodByName(key)
-		if method.IsValid() {
-			return method.Interface(), true
-		}
 	}
 	return nil, false
 }
